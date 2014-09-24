@@ -1,5 +1,7 @@
 package lib;
 
+import app.*;
+
 /**
  * Specifies methods for registering and logging in users.
  */
