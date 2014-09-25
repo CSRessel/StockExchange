@@ -38,7 +38,10 @@ public class PriceComparator implements java.util.Comparator<TradeOrder>
     if (order1.isMarket() && order2.isMarket()) return 0;
     if (order1.isMarket() && order2.isLimit()) return -1;
     if (order1.isLimit() && order2.isMarket()) return 1;
-    if (asc) return (int)(100*(order1.getPrice()-order2.getPrice()) + .5);
-    else return (int)(100*(order1.getPrice()-order2.getPrice()) + .5);
+    int cents1 = (int)(100*order1.getPrice() + .5);
+    int cents2 = (int)(100*order2.getPrice() + .5);
+
+    if (asc) return cents1 - cents2;
+    else return cents2 - cents1;
   }
 }
