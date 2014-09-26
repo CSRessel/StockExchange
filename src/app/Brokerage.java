@@ -51,7 +51,7 @@ public class Brokerage implements Login
 
     active.add(t);
     t.openWindow();
-    if (!t.hasMessages() t.receiveMessage("Welcome to SafeTrade!"));
+    if (!t.hasMessages()) t.receiveMessage("Welcome to SafeTrade!");
     return 0;
   }
 
