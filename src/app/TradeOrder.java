@@ -1,5 +1,5 @@
 package app;
-import lib.*;
+//import lib.*;
 
 /**
  * Represents a buy or sell order for trading a given number of shares of a specified stock. 
@@ -23,7 +23,7 @@ public class TradeOrder
    * @param numShares
    * @param price
    */
-  TradeOrder(Trader trader, String symbol, boolean buyOrder, boolean marketOrder, int numShares, double price) 
+  public TradeOrder(Trader trader, String symbol, boolean buyOrder, boolean marketOrder, int numShares, double price) 
   {
     this.trader=trader;
     this.symbol=symbol;
