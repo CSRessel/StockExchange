@@ -35,13 +35,13 @@ public class PriceComparator implements java.util.Comparator<TradeOrder>
    */
   public int compare(TradeOrder order1, TradeOrder order2)
   {
-    if (order1.isMarket() && order2.isMarket()) return 0;
-    if (order1.isMarket() && order2.isLimit()) return -1;
-    if (order1.isLimit() && order2.isMarket()) return 1;
-    int cents1 = (int)(100*order1.getPrice() + .5);
-    int cents2 = (int)(100*order2.getPrice() + .5);
+    if (order1.isMarket() && order2.isMarket()) {return 0;}
+    if (order1.isMarket() && order2.isLimit()) {return -1;}
+    if (order1.isLimit() && order2.isMarket()) {return 1;}
+    double cents1 = 100*order1.getPrice();
+    double cents2 = 100*order2.getPrice();
 
-    if (asc) return cents1 - cents2;
-    else return cents2 - cents1;
+    if (asc) {return (int)(Math.round(cents1 - cents2));}
+    else {return (int)(Math.round(cents2 - cents1));}
   }
 }

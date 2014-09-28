@@ -126,4 +126,9 @@ public class Trader implements Comparable<Trader>
     mailbox = null;
   }
 
+  public Trader(Brokerage brokerage, String name, String password)
+  {
+    // TODO Auto-generated constructor stub
+  }
+
 }
