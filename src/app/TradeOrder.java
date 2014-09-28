@@ -23,7 +23,7 @@ public class TradeOrder
    * @param numShares
    * @param price
    */
-  TradeOrder(Trader trader, String symbol, boolean buyOrder, boolean marketOrder, int numShares, double price) 
+  public TradeOrder(Trader trader, String symbol, boolean buyOrder, boolean marketOrder, int numShares, double price) 
   {
     this.trader=trader;
     this.symbol=symbol;
