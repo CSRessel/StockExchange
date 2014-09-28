@@ -104,7 +104,7 @@ public class Trader implements Comparable<Trader>
    */
   public void getQuote(String symbol)
   {
-    broker.getQuote();
+    broker.getQuote(symbol, this);
   }
   
   /**
@@ -113,7 +113,7 @@ public class Trader implements Comparable<Trader>
    */
   public void placeOrder(TradeOrder order)
   {
-    broker.placeOrder();
+    broker.placeOrder(order);
   }
   
   /**
@@ -122,13 +122,8 @@ public class Trader implements Comparable<Trader>
    */
   public void quit()
   {
-    broker.logout();
+    broker.logout(this);
     mailbox = null;
-  }
-
-  public Trader(Brokerage brokerage, String name, String password)
-  {
-    // TODO Auto-generated constructor stub
   }
 
 }
