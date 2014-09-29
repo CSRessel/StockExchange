@@ -4,14 +4,14 @@ import lib.*;
 import java.util.*;
 
 /**
- * descriptions for methods copy-pasted from the documentation
+ * Represents a trader. It can request quotes and place orders with the brokerage, as well as receive and store messages.
  * 
  * @author Julia Xia
  */
 public class Trader implements Comparable<Trader>
 {
 
-	// fields and stuff
+	// Fields
 	TraderWindow myWindow;
 	Queue<String> mailbox = new LinkedList<String>();
 	Brokerage broker;

@@ -1,3 +1,4 @@
+package source;
 /**
  * Specifies methods for registering and logging in users.
  */

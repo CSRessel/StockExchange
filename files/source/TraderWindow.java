@@ -1,3 +1,4 @@
+package source;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridBagLayout;
@@ -22,6 +23,7 @@ import javax.swing.Box;
 import javax.swing.AbstractButton;
 
 import javax.swing.border.EmptyBorder;
+import app.*;
 
 /**
  * Provides GUI for a trader.
