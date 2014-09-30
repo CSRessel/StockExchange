@@ -38,7 +38,6 @@ public class TradeOrder
 		this.numShares = numShares;
 		this.price = price;
 	}
-
 	/**
 	 * Returns the price per share for this trade order (used by a limit order).
 	 * 

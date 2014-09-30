@@ -1,7 +1,6 @@
 package app;
 
 import java.util.*;
-import lib.*;
 
 /**
  * Represents a stock exchange, which keeps a HashMap of listed stocks, keyed by
@@ -55,5 +54,22 @@ public class StockExchange
 	public void placeOrder(TradeOrder order)
 	{
 		stocks.get(order.getSymbol()).placeOrder(order);
+	}
+	
+	/**
+	 * Testing method for StockExchange
+	 */
+	public static void main(String[] args) {
+		StockExchange exch = new StockExchange();
+		exch.listStock("Test1", "Name1", 0.5);
+		exch.listStock("Test2", "Name2", 1.0);
+		exch.listStock("Test3", "Name3", 1.5);
+		Trader trader1 = new Trader(null, "Trader1", "password");
+		exch.placeOrder(new TradeOrder(trader1, "Test1", true, true, 10, 0.5));
+		exch.placeOrder(new TradeOrder(trader1, "Test2", true, true, 10, 0.5));
+		exch.placeOrder(new TradeOrder(new Trader(null, "Trader2", "password"), "Test3", true, true, 10, 0.5));
+		System.out.println(exch.getQuote("Test1"));
+		System.out.println(exch.getQuote("Test2"));
+		System.out.println(exch.getQuote("Test3"));
 	}
 }
