@@ -29,9 +29,9 @@ public class StockExchange
 	 */
 	public String getQuote(String symbol)
 	{
-	  if (stocks.get(symbol) == null)
-	    return symbol + " not found";	  
-	  return stocks.get(symbol).getQuote();
+		if (stocks.get(symbol) == null)
+			return symbol + " not found";	  
+		return stocks.get(symbol).getQuote();
 	}
 
 	/**
@@ -55,6 +55,10 @@ public class StockExchange
 	 */
 	public void placeOrder(TradeOrder order)
 	{
+		if (stocks.get(order.getSymbol()) == null) {
+			order.getTrader().receiveMessage(order.getSymbol() + "not found");
+			return;
+		}
 		stocks.get(order.getSymbol()).placeOrder(order);
 	}
 }
