@@ -1,7 +1,5 @@
 package app;
 
-import lib.*;
-
 import java.text.NumberFormat;
 import java.util.PriorityQueue;
 
@@ -44,10 +42,19 @@ public class Stock
 
 		this.dayVolume = 0;
 
-		sellOrders = new PriorityQueue(1337, new PriceComparator(true));
-		buyOrders = new PriorityQueue(1337, new PriceComparator(false));
+		sellOrders = new PriorityQueue<TradeOrder>(1337, new PriceComparator(true));
+		buyOrders = new PriorityQueue<TradeOrder>(1337, new PriceComparator(false));
 	}
 
+	/**
+	 * Returns the starting price
+	 * @return double 
+	 * 				the startingPrice
+	 */
+	public double getStartingPrice() {
+		return startingPrice;
+	}
+	
 	/**
 	 * Creates and returns a quote String for this Stock
 	 * 

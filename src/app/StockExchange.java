@@ -1,7 +1,6 @@
 package app;
 
 import java.util.*;
-import lib.*;
 
 /**
  * Represents a stock exchange, which keeps a HashMap of listed stocks, keyed by

@@ -84,7 +84,7 @@ public class Brokerage implements Login
 	}
 
 	/**
-	 * Requests a quote for a given stock from the stock exachange and passes it
+	 * Requests a quote for a given stock from the stock exchange and passes it
 	 * along to the trader by calling trader's receiveMessage method
 	 * 
 	 * @param symbol

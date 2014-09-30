@@ -19,7 +19,7 @@ public class Trader implements Comparable<Trader>
 	String password;
 
 	/**
-	 * Constructs a new trader, affiliated with a given brockerage, with a given
+	 * Constructs a new trader, affiliated with a given brokerage, with a given
 	 * screen name and password.
 	 * 
 	 * @param brokerage
@@ -55,7 +55,7 @@ public class Trader implements Comparable<Trader>
 	 */
 	public int compareTo(Trader other)
 	{
-		return username.compareTo(other.getName());
+		return username.toLowerCase().compareTo(other.getName().toLowerCase());
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class Trader implements Comparable<Trader>
 	 */
 	public boolean equals(Object other)
 	{
-		return username.equals(((Trader) other).getName());
+		return username.toLowerCase().equals(((Trader) other).getName().toLowerCase());
 	}
 
 	/**
@@ -76,7 +76,9 @@ public class Trader implements Comparable<Trader>
 	public void openWindow()
 	{
 		myWindow = new TraderWindow(this);
-		myWindow.showMessage(mailbox.remove());
+		while (hasMessages()) {
+			myWindow.showMessage(mailbox.remove());
+		}
 	}
 
 	/**
@@ -84,7 +86,7 @@ public class Trader implements Comparable<Trader>
 	 */
 	public boolean hasMessages()
 	{
-		return mailbox.isEmpty();
+		return !mailbox.isEmpty();
 	}
 
 	/**
@@ -100,7 +102,9 @@ public class Trader implements Comparable<Trader>
 		mailbox.add(msg);
 		if (myWindow != null)
 		{
-			myWindow.showMessage(mailbox.remove());
+			while (hasMessages()) {
+				myWindow.showMessage(mailbox.remove());
+			}
 		}
 	}
 

@@ -1,6 +1,5 @@
 package app;
 
-import lib.*;
 
 /**
  * Represents a buy or sell order for trading a given number of shares of a

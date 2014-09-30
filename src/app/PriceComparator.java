@@ -1,6 +1,5 @@
 package app;
 
-import lib.*;
 
 /**
  * A price comparator for trade orders.
