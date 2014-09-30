@@ -149,4 +149,12 @@ public class Stock
 
 		// TODO: call executeOrders ?
 	}
+	
+	/**
+	 * Testing method for Stock
+	 */
+	
+	public static void main(String[] args) {
+		
+	}
 }
