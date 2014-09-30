@@ -29,7 +29,9 @@ public class StockExchange
 	 */
 	public String getQuote(String symbol)
 	{
-		return stocks.get(symbol).getQuote();
+	  if (stocks.get(symbol) == null)
+	    return symbol + " not found";	  
+	  return stocks.get(symbol).getQuote();
 	}
 
 	/**
