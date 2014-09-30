@@ -44,8 +44,8 @@ public class Stock
 
 		this.dayVolume = 0;
 
-		sellOrders = new PriorityQueue<TradeOrder>(0, new PriceComparator(true));
-		buyOrders = new PriorityQueue<TradeOrder>(0, new PriceComparator(false));
+		sellOrders = new PriorityQueue(1337, new PriceComparator(true));
+		buyOrders = new PriorityQueue(1337, new PriceComparator(false));
 	}
 
 	/**
@@ -147,6 +147,58 @@ public class Stock
 			this.sellOrders.add(order);
 		}
 
-		// TODO: call executeOrders ?
+		executeOrders();
+	}
+	
+	public void executeOrders()
+	{
+		while (!buyOrders.isEmpty() && !sellOrders.isEmpty())
+		{		
+			TradeOrder buy = buyOrders.peek();
+			TradeOrder sell = sellOrders.peek();
+			
+			// if nothing will trade at given prices, just return
+			if (buy.isLimit() && sell.isLimit() && buy.getPrice() < sell.getPrice())
+				return;
+			
+			// find what price we are using
+			double price;
+			if (buy.isLimit() && sell.isLimit())		{ price = sell.getPrice(); }
+			else if (buy.isLimit() && sell.isMarket())	{ price = buy.getPrice(); }
+			else if (buy.isMarket() && sell.isLimit())	{ price = sell.getPrice(); }
+			else										{ price = this.lastPrice; }
+			
+			// find lowest number of shares
+			int shares;
+			if (buy.getShares() >= sell.getShares())	{ shares = sell.getShares(); }
+			else										{ shares = buy.getShares(); }
+			
+			// remove relevant shares
+			sell.subtractShares(shares);
+			buy.subtractShares(shares);
+			
+			// update this Stock's vars
+			this.dayVolume += shares;
+			if (price < this.lowPrice)	{ this.lowPrice = price; }
+			if (price > this.highPrice)	{ this.highPrice = price; }
+			this.lastPrice = price;
+			
+			// remove the orders if completely fulfilled
+			if (sell.getShares() == 0)
+				sellOrders.remove();
+			if (buy.getShares() == 0)
+				buyOrders.remove();
+			
+			// and finally let's send the message to the Traders
+			NumberFormat formatter = NumberFormat.getCurrencyInstance();
+			String priceString = formatter.format(price);
+			String totalPriceString = formatter.format((double)(price * shares));
+			
+			String msgSell = "You bought: " + shares + " at " + priceString + " amt " +  totalPriceString;
+			String msgBuy = "You sold: " + shares + " at " + priceString + " amt " +  totalPriceString;
+			
+			sell.getTrader().receiveMessage(msgSell);
+			buy.getTrader().receiveMessage(msgBuy);
+		}
 	}
 }
