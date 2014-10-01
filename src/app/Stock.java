@@ -95,7 +95,7 @@ public class Stock
 			TradeOrder order = buyOrders.peek();
 
 			finalString += order.getPrice();
-			finalString += "size: ";
+			finalString += " size: ";
 			finalString += order.getShares();
 		} else
 		{
@@ -128,7 +128,7 @@ public class Stock
 		msg += this.symbol;
 		if (!"".equals(this.companyName))
 		{
-			msg += "(" + this.companyName + ")\n";
+			msg += " (" + this.companyName + ")\n";
 		}
 
 		msg += order.getShares() + " shares ";
@@ -201,8 +201,8 @@ public class Stock
 			String priceString = formatter.format(price);
 			String totalPriceString = formatter.format((double)(price * shares));
 			
-			String msgSell = "You bought: " + shares + " at " + priceString + " amt " +  totalPriceString;
-			String msgBuy = "You sold: " + shares + " at " + priceString + " amt " +  totalPriceString;
+			String msgSell = "You sold: " + shares + " at " + priceString + " amt " +  totalPriceString;
+			String msgBuy = "You bought: " + shares + " at " + priceString + " amt " +  totalPriceString;
 			
 			sell.getTrader().receiveMessage(msgSell);
 			buy.getTrader().receiveMessage(msgBuy);
