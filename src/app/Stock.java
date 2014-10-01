@@ -24,7 +24,7 @@ public class Stock
 	 * Constructor for Stock
 	 * 
 	 * @param symbol
-	 *            shortname for the Stock
+	 *            short name for the Stock
 	 * @param name
 	 *            company name
 	 * @param price
